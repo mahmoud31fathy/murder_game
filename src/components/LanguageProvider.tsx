@@ -102,14 +102,13 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     return dictionary[language]?.[key as keyof typeof dictionary["en"]] || key;
   };
 
-  if (!mounted) {
-    // Prevent hydration mismatch by returning a simple wrapper until mounted
-    return <div style={{ visibility: "hidden" }}>{children}</div>;
-  }
-
   return (
     <LanguageContext.Provider value={{ language, toggleLanguage, t }}>
-      {children}
+      {!mounted ? (
+        <div style={{ visibility: "hidden" }}>{children}</div>
+      ) : (
+        children
+      )}
     </LanguageContext.Provider>
   );
 };

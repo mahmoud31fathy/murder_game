@@ -8,18 +8,31 @@ datasource db {
 
 model Game {
   id         String      @id @default(uuid())
-  titleEn    String
-  titleAr    String
-  settingEn  String
-  settingAr  String
-  victimEn   String
-  victimAr   String
+  titleEn    String?
+  titleAr    String?
+  settingEn  String?
+  settingAr  String?
+  victimEn   String?
+  victimAr   String?
   joinCode   String      @unique // Can still be used as a simple save/load session code
   status     String      @default("SETUP") // SETUP, ROLE_REVEAL, INVESTIGATION, FINISHED
+  mode       String      @default("OFFLINE") // ONLINE or OFFLINE
+  judgeId    String?     // ID of the player acting as judge
   createdAt  DateTime    @default(now())
   players    Player[]
   characters Character[]
   clues      Clue[]
+  messages   Message[]
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  gameId    String
+  playerId  String
+  content   String
+  createdAt DateTime @default(now())
+  game      Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  player    Player   @relation(fields: [playerId], references: [id], onDelete: Cascade)
 }
 
 model Player {
@@ -30,6 +43,7 @@ model Player {
   createdAt  DateTime   @default(now())
   game       Game       @relation(fields: [gameId], references: [id], onDelete: Cascade)
   character  Character?
+  messages   Message[]
 }
 
 model Character {

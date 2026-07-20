@@ -16,37 +16,68 @@ interface Character {
 interface PassAndPlayFlowProps {
   gameId: string;
   characters: Character[];
+  gameMode?: string;
+  playerId?: string;
+  players?: any[];
 }
 
-export default function PassAndPlayFlow({ gameId, characters }: PassAndPlayFlowProps) {
+export default function PassAndPlayFlow({ gameId, characters, gameMode, playerId, players }: PassAndPlayFlowProps) {
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const [revealState, setRevealState] = useState<"pass" | "reveal" | "done">("pass");
   const [isHolding, setIsHolding] = useState(false);
   const { language, t } = useLanguage();
 
+  const isOnline = gameMode === 'ONLINE';
+
   useEffect(() => {
     // Check if this game's flow has already been completed in this session
-    const completed = localStorage.getItem(`pass-flow-done-${gameId}`);
+    const storageKey = isOnline ? `pass-flow-done-${gameId}-${playerId}` : `pass-flow-done-${gameId}`;
+    const completed = localStorage.getItem(storageKey);
+    
     if (completed) {
       setRevealState("done");
+    } else if (isOnline) {
+      // In online mode, we skip the pass screen and go straight to reveal
+      setRevealState("reveal");
     }
-  }, [gameId]);
+  }, [gameId, isOnline, playerId]);
 
   if (revealState === "done") return null;
 
-  const currentCharacter = characters[currentPlayerIndex];
+  const storageKey = isOnline ? `pass-flow-done-${gameId}-${playerId}` : `pass-flow-done-${gameId}`;
+
+  let currentCharacter = characters[currentPlayerIndex];
+  
+  if (isOnline && playerId && players) {
+    const player = players.find(p => p.id === playerId);
+    if (player && player.characterId) {
+      const charMatch = characters.find(c => c.id === player.characterId);
+      if (charMatch) {
+        currentCharacter = charMatch;
+      }
+    }
+  }
+
+  if (!currentCharacter) {
+    setRevealState("done");
+    return null;
+  }
+
   const charName = language === 'ar' ? currentCharacter.nameAr : currentCharacter.nameEn;
   const motive = language === 'ar' ? currentCharacter.secretMotiveAr : currentCharacter.secretMotiveEn;
   const alibi = language === 'ar' ? currentCharacter.secretAlibiAr : currentCharacter.secretAlibiEn;
 
   const handleNext = () => {
-    if (currentPlayerIndex < characters.length - 1) {
+    if (isOnline) {
+      setRevealState("done");
+      localStorage.setItem(storageKey, "true");
+    } else if (currentPlayerIndex < characters.length - 1) {
       setCurrentPlayerIndex(prev => prev + 1);
       setRevealState("pass");
       setIsHolding(false);
     } else {
       setRevealState("done");
-      localStorage.setItem(`pass-flow-done-${gameId}`, "true");
+      localStorage.setItem(storageKey, "true");
     }
   };
 
@@ -124,7 +155,7 @@ export default function PassAndPlayFlow({ gameId, characters }: PassAndPlayFlowP
                 onClick={handleNext}
                 className="w-full py-3 text-sm border-b border-transparent text-on-surface-variant hover:text-white hover:border-white/30 transition-all font-label-caps"
               >
-                Hide & Next
+                {isOnline ? "Continue to Evidence" : "Hide & Next"}
               </button>
             </div>
           </div>
