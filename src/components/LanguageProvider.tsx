@@ -148,7 +148,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   };
 
   const t = (key: string) => {
-    return dictionary[language]?.[key as keyof typeof dictionary["en"]] || key;
+    return (dictionary[language] as any)?.[key] || key;
   };
 
   return (

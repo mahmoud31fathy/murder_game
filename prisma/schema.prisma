@@ -10,6 +10,8 @@ model Game {
   id         String      @id @default(uuid())
   titleEn    String?
   titleAr    String?
+  storyEn    String?
+  storyAr    String?
   settingEn  String?
   settingAr  String?
   victimEn   String?

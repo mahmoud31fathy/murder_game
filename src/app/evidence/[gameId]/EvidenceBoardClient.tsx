@@ -29,6 +29,8 @@ export default function EvidenceBoardClient({ game, playerId }: { game: any, pla
         gameMode={game.mode} 
         playerId={playerId} 
         players={game.players} 
+        storyEn={game.storyEn}
+        storyAr={game.storyAr}
       />
       
       {/* Top AppBar */}

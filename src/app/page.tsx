@@ -11,7 +11,6 @@ export default function Lobby() {
   const [loading, setLoading] = useState(false);
   const [view, setView] = useState<ViewState>("MAIN");
   const [playerNames, setPlayerNames] = useState<string[]>(["", "", ""]);
-  const [judgeIndex, setJudgeIndex] = useState<number | null>(null);
   const [joinCode, setJoinCode] = useState("");
   const [playerName, setPlayerName] = useState("");
   const router = useRouter();
@@ -22,8 +21,6 @@ export default function Lobby() {
     const updated = [...playerNames];
     updated.splice(i, 1);
     setPlayerNames(updated);
-    if (judgeIndex === i) setJudgeIndex(null);
-    else if (judgeIndex !== null && judgeIndex > i) setJudgeIndex(judgeIndex - 1);
   };
   
   const handleNameChange = (i: number, val: string) => {
@@ -40,7 +37,7 @@ export default function Lobby() {
     }
     setLoading(true);
     try {
-      const judgeName = judgeIndex !== null ? validNames[judgeIndex] : null;
+      const judgeName = validNames.length > 0 ? validNames[0] : null;
       const res = await fetch("/api/generate-game", { 
         method: "POST", 
         body: JSON.stringify({ playerNames: validNames, judgeName, mode: "OFFLINE" }) 
@@ -161,17 +158,20 @@ export default function Lobby() {
               <h3 className="font-headline-sm text-2xl border-b border-white/10 pb-4">{t("lobby.enterPlayerNames")}</h3>
               {playerNames.map((name, i) => (
                 <div key={i} className="flex gap-4 items-center">
-                  <input
-                    className="flex-grow p-3 bg-white/5 border border-white/20 rounded-md focus:border-primary outline-none"
-                    placeholder={`${t("lobby.playerPlaceholder")} ${i + 1}`}
-                    value={name}
-                    onChange={(e) => handleNameChange(i, e.target.value)}
-                  />
-                  <label className="flex items-center gap-2 text-sm text-on-surface-variant cursor-pointer">
-                    <input type="radio" name="judge" checked={judgeIndex === i} onChange={() => setJudgeIndex(i)} />
-                    {t("lobby.judgeOption")}
-                  </label>
-                  {playerNames.length > 3 && (
+                  <div className="flex-grow relative">
+                    {i === 0 && (
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-primary text-sm">
+                        gavel
+                      </span>
+                    )}
+                    <input
+                      className={`w-full p-3 ${i === 0 ? 'pl-9 bg-primary/10 border-primary' : 'bg-white/5 border-white/20'} border rounded-md focus:border-primary outline-none transition-colors`}
+                      placeholder={i === 0 ? (t("lobby.judgePlaceholder") || "Judge Name") : `${t("lobby.playerPlaceholder")} ${i}`}
+                      value={name}
+                      onChange={(e) => handleNameChange(i, e.target.value)}
+                    />
+                  </div>
+                  {playerNames.length > 3 && i !== 0 && (
                     <button onClick={() => handleRemovePlayer(i)} className="text-red-400 hover:text-red-300">
                       <span className="material-symbols-outlined">delete</span>
                     </button>

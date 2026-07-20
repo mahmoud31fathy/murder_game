@@ -34,6 +34,7 @@ export async function POST(req: Request) {
       - 1 victim (give them a name)
       - 1 setting description
       - 1 title
+      - A comprehensive "murder case story" (storyEn and storyAr). This story should set the scene, describe the murder, and explicitly name all the suspects at the very end. The Judge will read this story out loud to the players.
       - Exactly ${suspectCount} playable characters (suspects). Each needs a name, motive, secret, and alibi.
       - Exactly 12 logical clues that tie the characters together.
       
@@ -50,6 +51,8 @@ export async function POST(req: Request) {
         "titleAr": "String",
         "settingEn": "String",
         "settingAr": "String",
+        "storyEn": "String",
+        "storyAr": "String",
         "victimEn": "String",
         "victimAr": "String",
         "characters": [
@@ -82,6 +85,8 @@ export async function POST(req: Request) {
         titleAr: "لغز في معرض أوبسيديان",
         settingEn: "A dimly lit art gallery filled with modern glass sculptures.",
         settingAr: "معرض فني خافت الإضاءة مليء بالمنحوتات الزجاجية الحديثة.",
+        storyEn: "Welcome to the Obsidian Gallery. A famous art dealer was found dead. The suspects are: " + suspectNames.join(', '),
+        storyAr: "مرحبًا بكم في معرض أوبسيديان. تم العثور على تاجر أعمال فنية ميتًا. المشتبه بهم هم: " + suspectNames.join(', '),
         victimEn: "Victor Sterling, a stabbed businessman",
         victimAr: "فيكتور ستيرلينغ، رجل أعمال مطعون",
         characters: Array.from({ length: suspectCount }, (_, i) => ({
@@ -135,6 +140,8 @@ export async function POST(req: Request) {
         titleAr: data.titleAr,
         settingEn: data.settingEn,
         settingAr: data.settingAr,
+        storyEn: data.storyEn,
+        storyAr: data.storyAr,
         victimEn: data.victimEn,
         victimAr: data.victimAr,
         joinCode,
