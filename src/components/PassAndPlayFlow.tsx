@@ -7,10 +7,12 @@ interface Character {
   id: string;
   nameEn: string;
   nameAr: string;
-  secretMotiveEn: string;
-  secretMotiveAr: string;
-  secretAlibiEn: string;
-  secretAlibiAr: string;
+  motiveEn: string;
+  motiveAr: string;
+  secretEn: string;
+  secretAr: string;
+  alibiEn: string;
+  alibiAr: string;
 }
 
 interface PassAndPlayFlowProps {
@@ -64,8 +66,11 @@ export default function PassAndPlayFlow({ gameId, characters, gameMode, playerId
   }
 
   const charName = language === 'ar' ? currentCharacter.nameAr : currentCharacter.nameEn;
-  const motive = language === 'ar' ? currentCharacter.secretMotiveAr : currentCharacter.secretMotiveEn;
-  const alibi = language === 'ar' ? currentCharacter.secretAlibiAr : currentCharacter.secretAlibiEn;
+  const motiveStr = language === 'ar' ? currentCharacter.motiveAr : currentCharacter.motiveEn;
+  const secretStr = language === 'ar' ? currentCharacter.secretAr : currentCharacter.secretEn;
+  const secretLabel = language === 'ar' ? 'السر' : 'Secret';
+  const motive = `${motiveStr}\n\n${secretLabel}: ${secretStr}`;
+  const alibi = language === 'ar' ? currentCharacter.alibiAr : currentCharacter.alibiEn;
 
   const handleNext = () => {
     if (isOnline) {
@@ -122,14 +127,14 @@ export default function PassAndPlayFlow({ gameId, characters, gameMode, playerId
               <div className="bg-surface-container p-6 border-l-4 border-primary mb-4 relative overflow-hidden">
                 <div className="absolute top-0 right-0 stamp-classified opacity-20 transform rotate-12 scale-150 -mt-4 -mr-4 pointer-events-none">TOP SECRET</div>
                 <h3 className="font-label-caps text-primary mb-2 opacity-70">{t('character.hidden_motive')}</h3>
-                <p className="font-body-lg text-on-surface leading-relaxed">
+                <p className="font-body-lg text-on-surface leading-relaxed whitespace-pre-wrap">
                   {motive}
                 </p>
               </div>
 
               <div className="bg-surface-container p-6 border-l-4 border-on-surface-variant relative overflow-hidden">
                 <h3 className="font-label-caps text-on-surface-variant mb-2 opacity-70">{t('character.secret_alibi')}</h3>
-                <p className="font-body-lg text-on-surface leading-relaxed italic">
+                <p className="font-body-lg text-on-surface leading-relaxed italic whitespace-pre-wrap">
                   {alibi}
                 </p>
               </div>

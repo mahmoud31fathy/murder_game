@@ -138,17 +138,17 @@ export default function Lobby() {
               <button onClick={() => setView("OFFLINE_SETUP")} className="p-6 border border-white/10 rounded-lg hover:border-primary transition-all flex flex-col items-center text-center group">
                 <span className="material-symbols-outlined text-4xl mb-2 text-white/50 group-hover:text-primary transition-colors">group</span>
                 <h3 className="font-headline-sm text-xl mb-1">{t("lobby.offlineMode") || "Play Offline (Local)"}</h3>
-                <p className="text-sm text-on-surface-variant">Pass-and-play on a single device with friends.</p>
+                <p className="text-sm text-on-surface-variant">{t("lobby.offlineDesc")}</p>
               </button>
               <button onClick={() => setView("ONLINE_HOST")} className="p-6 border border-white/10 rounded-lg hover:border-primary transition-all flex flex-col items-center text-center group">
                 <span className="material-symbols-outlined text-4xl mb-2 text-white/50 group-hover:text-primary transition-colors">public</span>
                 <h3 className="font-headline-sm text-xl mb-1">{t("lobby.hostOnline") || "Host Online Game"}</h3>
-                <p className="text-sm text-on-surface-variant">Create a lobby and share the code.</p>
+                <p className="text-sm text-on-surface-variant">{t("lobby.hostDesc")}</p>
               </button>
               <button onClick={() => setView("ONLINE_JOIN")} className="p-6 border border-white/10 rounded-lg hover:border-primary transition-all flex flex-col items-center text-center group">
                 <span className="material-symbols-outlined text-4xl mb-2 text-white/50 group-hover:text-primary transition-colors">login</span>
                 <h3 className="font-headline-sm text-xl mb-1">{t("lobby.joinOnline") || "Join Online Game"}</h3>
-                <p className="text-sm text-on-surface-variant">Enter a code to join an existing lobby.</p>
+                <p className="text-sm text-on-surface-variant">{t("lobby.joinDesc")}</p>
               </button>
             </div>
           )}
@@ -156,20 +156,20 @@ export default function Lobby() {
           {view === "OFFLINE_SETUP" && (
             <div className="flex flex-col gap-6">
               <button onClick={() => setView("MAIN")} className="text-primary self-start flex items-center text-sm font-label-caps uppercase tracking-wider">
-                <span className="material-symbols-outlined text-sm mr-1">arrow_back</span> Back
+                <span className="material-symbols-outlined text-sm mr-1">arrow_back</span> {t("lobby.back")}
               </button>
-              <h3 className="font-headline-sm text-2xl border-b border-white/10 pb-4">Enter Player Names</h3>
+              <h3 className="font-headline-sm text-2xl border-b border-white/10 pb-4">{t("lobby.enterPlayerNames")}</h3>
               {playerNames.map((name, i) => (
                 <div key={i} className="flex gap-4 items-center">
                   <input
                     className="flex-grow p-3 bg-white/5 border border-white/20 rounded-md focus:border-primary outline-none"
-                    placeholder={`Player ${i + 1}`}
+                    placeholder={`${t("lobby.playerPlaceholder")} ${i + 1}`}
                     value={name}
                     onChange={(e) => handleNameChange(i, e.target.value)}
                   />
                   <label className="flex items-center gap-2 text-sm text-on-surface-variant cursor-pointer">
                     <input type="radio" name="judge" checked={judgeIndex === i} onChange={() => setJudgeIndex(i)} />
-                    Judge?
+                    {t("lobby.judgeOption")}
                   </label>
                   {playerNames.length > 3 && (
                     <button onClick={() => handleRemovePlayer(i)} className="text-red-400 hover:text-red-300">
@@ -178,13 +178,13 @@ export default function Lobby() {
                   )}
                 </div>
               ))}
-              <button onClick={handleAddPlayer} className="text-primary hover:underline self-start">+ Add Player</button>
+              <button onClick={handleAddPlayer} className="text-primary hover:underline self-start">{t("lobby.addPlayer")}</button>
               <button 
                 onClick={startOfflineGame}
                 disabled={loading}
                 className="mt-6 w-full py-4 bg-primary text-background font-label-caps font-bold tracking-widest rounded-md hover:brightness-110 disabled:opacity-50"
               >
-                {loading ? "GENERATING CASE..." : "START OFFLINE GAME"}
+                {loading ? t("lobby.generatingCase") : t("lobby.startOfflineGame")}
               </button>
             </div>
           )}
@@ -192,13 +192,13 @@ export default function Lobby() {
           {(view === "ONLINE_HOST" || view === "ONLINE_JOIN") && (
             <div className="flex flex-col gap-6">
                <button onClick={() => setView("MAIN")} className="text-primary self-start flex items-center text-sm font-label-caps uppercase tracking-wider">
-                <span className="material-symbols-outlined text-sm mr-1">arrow_back</span> Back
+                <span className="material-symbols-outlined text-sm mr-1">arrow_back</span> {t("lobby.back")}
               </button>
               <h3 className="font-headline-sm text-2xl border-b border-white/10 pb-4">
-                {view === "ONLINE_HOST" ? "Host Game" : "Join Game"}
+                {view === "ONLINE_HOST" ? t("lobby.hostGameTitle") : t("lobby.joinGameTitle")}
               </h3>
               <div>
-                <label className="block text-sm text-on-surface-variant mb-2">Your Name</label>
+                <label className="block text-sm text-on-surface-variant mb-2">{t("lobby.yourNameLabel")}</label>
                 <input
                   className="w-full p-3 bg-white/5 border border-white/20 rounded-md focus:border-primary outline-none"
                   placeholder="e.g. John Doe"
@@ -208,10 +208,10 @@ export default function Lobby() {
               </div>
               {view === "ONLINE_JOIN" && (
                 <div>
-                  <label className="block text-sm text-on-surface-variant mb-2">Join Code</label>
+                  <label className="block text-sm text-on-surface-variant mb-2">{t("lobby.joinCodeLabel")}</label>
                   <input
                     className="w-full p-3 bg-white/5 border border-white/20 rounded-md focus:border-primary outline-none uppercase"
-                    placeholder="XXXXXX"
+                    placeholder={t("lobby.joinCodePlaceholder")}
                     value={joinCode}
                     onChange={(e) => setJoinCode(e.target.value.toUpperCase())}
                     maxLength={6}
@@ -223,7 +223,7 @@ export default function Lobby() {
                 disabled={loading}
                 className="mt-6 w-full py-4 bg-primary text-background font-label-caps font-bold tracking-widest rounded-md hover:brightness-110 disabled:opacity-50"
               >
-                {loading ? "PROCESSING..." : view === "ONLINE_HOST" ? "CREATE LOBBY" : "JOIN LOBBY"}
+                {loading ? t("lobby.processing") : view === "ONLINE_HOST" ? t("lobby.createLobbyBtn") : t("lobby.joinLobbyBtn")}
               </button>
             </div>
           )}
