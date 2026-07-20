@@ -2,17 +2,20 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { useLanguage } from "@/components/LanguageProvider";
+import LanguageToggle from "@/components/LanguageToggle";
 
 export default function Lobby() {
   const [loading, setLoading] = useState(false);
   const [accessCode, setAccessCode] = useState(["8", "", "", ""]);
   const inputRefs = [useRef<HTMLInputElement>(null), useRef<HTMLInputElement>(null), useRef<HTMLInputElement>(null), useRef<HTMLInputElement>(null)];
   const router = useRouter();
+  const { t, language } = useLanguage();
 
   const handleGenerateGame = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/generate-game", { method: "POST" });
+      const res = await fetch("/api/generate-game", { method: "POST", body: JSON.stringify({ playerCount: 4 }) });
       if (!res.ok) {
         const text = await res.text();
         throw new Error(`API returned ${res.status}: ${text}`);
@@ -57,11 +60,14 @@ export default function Lobby() {
       <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-gutter h-16">
         <div className="flex items-center gap-3">
           <span className="material-symbols-outlined text-primary">timer</span>
-          <h1 className="font-headline-sm text-headline-sm-mobile md:text-headline-sm text-primary uppercase tracking-widest">A Crime at the Closed Gallery</h1>
+          <h1 className="font-headline-sm text-headline-sm-mobile md:text-headline-sm text-primary uppercase tracking-widest">{t('lobby.title')}</h1>
         </div>
-        <button className="hover:text-primary transition-colors">
-          <span className="material-symbols-outlined">settings</span>
-        </button>
+        <div className="flex items-center gap-4">
+          <LanguageToggle />
+          <button className="hover:text-primary transition-colors">
+            <span className="material-symbols-outlined">settings</span>
+          </button>
+        </div>
       </header>
 
       <main className="relative z-10 pt-24 pb-32 px-gutter max-w-[1200px] mx-auto min-h-screen flex flex-col items-center justify-center">

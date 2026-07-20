@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import PassAndPlayFlow from "@/components/PassAndPlayFlow";
+import LanguageToggle from "@/components/LanguageToggle";
 
 interface EvidencePageProps {
   params: Promise<{ gameId: string }>;
@@ -31,6 +33,7 @@ export default async function EvidenceBoard({ params }: EvidencePageProps) {
   return (
     <>
       <div className="grain-overlay"></div>
+      <PassAndPlayFlow gameId={game.id} characters={game.characters} />
       
       {/* Top AppBar */}
       <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-gutter h-16">
@@ -38,9 +41,12 @@ export default async function EvidenceBoard({ params }: EvidencePageProps) {
           <span className="material-symbols-outlined text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>timer</span>
           <h1 className="font-headline-sm text-headline-sm-mobile md:text-headline-sm text-primary uppercase tracking-widest">{game.title}</h1>
         </div>
-        <button className="hover:text-primary transition-colors">
-          <span className="material-symbols-outlined">settings</span>
-        </button>
+        <div className="flex items-center gap-4">
+          <LanguageToggle />
+          <button className="hover:text-primary transition-colors">
+            <span className="material-symbols-outlined">settings</span>
+          </button>
+        </div>
       </header>
 
       {/* Main Board Content */}
