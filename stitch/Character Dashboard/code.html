@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Carpenter | Investigative Dossier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&amp;family=Geist:wght@100..900&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .grain-overlay {
+            background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+            opacity: 0.05;
+            pointer-events: none;
+        }
+        .torn-edge {
+            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 L5 5 L10 0 L15 7 L20 2 L25 10 L30 4 L35 12 L40 6 L45 15 L50 8 L55 18 L60 10 L65 20 L70 12 L75 18 L80 10 L85 15 L90 5 L95 12 L100 0 Z" fill="black"/></svg>');
+            mask-repeat: repeat-x;
+            mask-size: 40px 10px;
+        }
+        .stamp-top-secret {
+            border: 4px double #d97707;
+            color: #d97707;
+            transform: rotate(-15deg);
+            opacity: 0.7;
+            mask-image: radial-gradient(circle, black 50%, rgba(0,0,0,0.5) 100%);
+        }
+        .paper-clip {
+            width: 40px;
+            height: 12px;
+            background: #a88a86;
+            border-radius: 10px;
+            position: absolute;
+            top: -6px;
+            right: 20px;
+            z-index: 20;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .paper-clip::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 8px;
+            border: 2px solid #59413e;
+            border-radius: 10px;
+            top: 2px;
+            left: 5px;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#410002",
+                    "primary-fixed": "#ffdad6",
+                    "secondary-container": "#d97707",
+                    "on-tertiary-fixed-variant": "#004b74",
+                    "surface-container-low": "#1c1b1d",
+                    "on-primary": "#690007",
+                    "error-container": "#93000a",
+                    "on-secondary-container": "#432100",
+                    "tertiary-container": "#00527f",
+                    "secondary-fixed": "#ffdcc3",
+                    "on-surface-variant": "#e1bfbb",
+                    "surface-variant": "#353437",
+                    "on-secondary-fixed-variant": "#6e3900",
+                    "outline": "#a88a86",
+                    "secondary-fixed-dim": "#ffb77d",
+                    "background": "#131315",
+                    "on-tertiary": "#003352",
+                    "tertiary-fixed": "#cde5ff",
+                    "primary-container": "#991b1b",
+                    "inverse-primary": "#b02d29",
+                    "on-tertiary-fixed": "#001d32",
+                    "secondary": "#ffb77d",
+                    "on-primary-fixed-variant": "#8e1214",
+                    "surface-container-lowest": "#0e0e10",
+                    "error": "#ffb4ab",
+                    "surface-container-high": "#2a2a2c",
+                    "surface-bright": "#39393b",
+                    "surface-dim": "#131315",
+                    "surface-tint": "#ffb4ac",
+                    "outline-variant": "#59413e",
+                    "surface": "#131315",
+                    "on-error-container": "#ffdad6",
+                    "primary-fixed-dim": "#ffb4ac",
+                    "on-primary-container": "#ffaaa1",
+                    "inverse-on-surface": "#313032",
+                    "tertiary-fixed-dim": "#94ccff",
+                    "inverse-surface": "#e5e1e4",
+                    "on-background": "#e5e1e4",
+                    "surface-container": "#201f22",
+                    "on-tertiary-container": "#8cc5f8",
+                    "surface-container-highest": "#353437",
+                    "on-secondary": "#4d2600",
+                    "primary": "#ffb4ac",
+                    "tertiary": "#94ccff",
+                    "on-error": "#690005",
+                    "on-surface": "#e5e1e4",
+                    "on-secondary-fixed": "#2f1500"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "container-padding": "24px",
+                    "unit": "4px",
+                    "evidence-gap": "32px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Libre Caslon Text"],
+                    "body-md": ["Geist"],
+                    "display-lg-mobile": ["Libre Caslon Text"],
+                    "headline-md": ["Libre Caslon Text"],
+                    "label-caps": ["JetBrains Mono"],
+                    "body-lg": ["Geist"],
+                    "display-lg": ["Libre Caslon Text"]
+            },
+            "fontSize": {
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden min-h-screen">
+<!-- Atmospheric Background Shader -->
+<div class="fixed inset-0 z-0">
+
+<div class="absolute inset-0 grain-overlay"></div>
+</div>
+<!-- Top Navigation -->
+<header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-gutter h-16">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">timer</span>
+<span class="font-headline-sm text-headline-sm text-primary uppercase tracking-widest">A Crime at the Closed Gallery</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</header>
+<main class="relative z-10 pt-24 pb-32 px-container-padding max-w-[1200px] mx-auto">
+<!-- Case Header -->
+<div class="mb-12 flex flex-col md:flex-row justify-between items-end gap-6 border-l-4 border-primary-container pl-6">
+<div>
+<span class="font-label-caps text-label-caps text-primary mb-2 block">Dossier #99-C-2023</span>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface leading-tight">The Carpenter</h1>
+<p class="font-body-lg text-on-surface-variant mt-2 max-w-2xl">A meticulous artisan of wood and bone. Suspected involvement in the heist of the century.</p>
+</div>
+<div class="bg-primary-container/10 border border-primary-container/20 px-4 py-2 rounded-lg backdrop-blur-md">
+<span class="font-label-caps text-label-caps text-primary">Threat Level: RED</span>
+</div>
+</div>
+<!-- Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Side Profile: The Polaroid -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="relative transform -rotate-2 hover:rotate-0 transition-transform duration-500">
+<div class="paper-clip"></div>
+<div class="bg-on-surface p-4 pb-12 shadow-[8px_8px_0px_rgba(0,0,0,0.4)] relative">
+<div class="w-full aspect-square bg-surface-container-highest overflow-hidden relative">
+<img class="w-full h-full object-cover grayscale contrast-125" data-alt="A cinematic, moody portrait of a rugged man in his late 40s known as 'The Carpenter'. He has weathered skin, sharp eyes, and is wearing a dark, heavy-duty canvas work jacket. He is standing in a dimly lit woodworking studio filled with dust motes and hanging tools. The lighting is high-contrast, film-noir style with deep shadows and blood-red highlights hitting the side of his face. The atmosphere is gritty and investigative." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwxnbdTgp2q2I3bfVOldz7JdY18KqjBvkWR_T3Xg_gSTyTIgc08p6OSP7suGdkHo3706XSEqStZdEKYJKpsYi60BT8O9o0oqCMsmrMeHyHZKg4y8oF4ezKh-HyP-aSpEey5sb2dFihlESPOynIYQ0mM92W1xYv1IzNPPtM6sQvRs8bEbTj30_pQjsljByfIo1a6YxZWTB7OEXf63wcAjEORChCmEypHalKWNeOonredqtHAgepbpL2rQ"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+</div>
+<div class="mt-4">
+<p class="font-label-caps text-background text-[14px] leading-tight">SUBJECT: ELIAS THORNE<br/>ALIAS: THE CARPENTER</p>
+</div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 stamp-top-secret px-6 py-2 border-4 border-double border-secondary-container font-headline-md text-headline-md uppercase tracking-tighter pointer-events-none whitespace-nowrap">
+                            TOP SECRET
+                        </div>
+</div>
+</div>
+<!-- Forensic Stats -->
+<div class="bg-surface-container/60 backdrop-blur-lg border border-white/10 p-6 rounded-lg space-y-4">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant border-b border-white/5 pb-2">Investigative Notes</h3>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant text-sm">Last Seen</span>
+<span class="font-label-caps text-primary">Warehouse 12, Pier 4</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant text-sm">Key Association</span>
+<span class="font-label-caps text-primary">The Curators</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant text-sm">Risk Factor</span>
+<span class="font-label-caps text-secondary-container text-xs">CRITICAL EVIDENCE TAMPERING</span>
+</div>
+</div>
+</div>
+<!-- Content Area: Tabs & Dossier -->
+<div class="lg:col-span-8">
+<div class="bg-surface-container-low/60 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+<!-- Tab Switcher -->
+<div class="flex border-b border-white/10">
+<button class="flex-1 py-4 font-label-caps text-label-caps text-primary border-b-2 border-primary bg-primary/5 transition-all" id="tab-public" onclick="switchTab('public')">
+                            Public Profile
+                        </button>
+<button class="flex-1 py-4 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all" id="tab-motive" onclick="switchTab('motive')">
+                            Hidden Motive
+                        </button>
+<button class="flex-1 py-4 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all" id="tab-alibi" onclick="switchTab('alibi')">
+                            Secret Alibi
+                        </button>
+</div>
+<!-- Tab Contents -->
+<div class="p-8">
+<!-- Public Profile -->
+<div class="space-y-6" id="content-public">
+<div class="prose prose-invert max-w-none">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-4">Master Woodworker</h2>
+<p class="font-body-lg text-on-surface-variant leading-relaxed">
+                                    Thorne has operated "The Shaving &amp; Plane" on 4th Street for over two decades. Known for restorative work on colonial-era furniture, his client list includes some of the city's wealthiest collectors. No criminal record. Respected member of the local artisan guild.
+                                </p>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-8">
+<div class="bg-white/5 p-4 rounded border border-white/5">
+<span class="block text-xs text-on-surface-variant mb-1 font-label-caps">ESTABLISHED</span>
+<span class="font-headline-sm text-on-surface">1998</span>
+</div>
+<div class="bg-white/5 p-4 rounded border border-white/5">
+<span class="block text-xs text-on-surface-variant mb-1 font-label-caps">SPECIALTY</span>
+<span class="font-headline-sm text-on-surface">Intarsia</span>
+</div>
+</div>
+</div>
+<!-- Hidden Motive (Confidential/Gritty) -->
+<div class="hidden space-y-6 animate-pulse-once" id="content-motive">
+<div class="relative">
+<div class="absolute -top-4 -right-4 bg-primary-container text-white text-[10px] px-2 py-1 rotate-12 font-label-caps">CLASSIFIED</div>
+<div class="p-6 bg-background/80 border-2 border-primary-container border-dashed rounded-lg">
+<h2 class="font-headline-md text-headline-md text-primary mb-4 uppercase tracking-tighter">The Debt of Sawdust</h2>
+<div class="space-y-4">
+<p class="font-body-lg text-on-surface italic">"The guild isn't what they think. The wood speaks of rot."</p>
+<p class="font-body-md text-on-surface-variant border-l-2 border-primary-container pl-4">
+                                            Intelligence suggests Thorne is being coerced by an underground syndicate. His daughter's medical bills were liquidated by an anonymous source linked to the Gallery heist. He isn't working for profit; he's working for a life.
+                                        </p>
+</div>
+<div class="mt-8 flex gap-4">
+<div class="w-24 h-24 bg-surface-container overflow-hidden rounded border border-white/10">
+<img class="w-full h-full object-cover" data-alt="A macro close-up photo of a suspicious medical bill document with a 'PAID IN FULL' red ink stamp. The document is sitting on a dark, gritty wooden workbench littered with wood shavings. High contrast, atmospheric lighting with a deep red tint." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtE6fSoGtRK10xl94ffPVTsXxYotBCiopdADSZmIBKD2fucgA0lvn-rimYaPMOs7x6KPeleUzjN9S_AJvKHBtzO101L-g4uH8qfgvMD-vAy3k7itVGqE_oFbq5508Lus-Ss2RbS5v6cguvHtyfr0YivfxUZP0bqbs6ZkiePPRJrItVXYeInZq3bBPN98VU_QpK_--KNYCDvInhiLa1-K20WsdNwZ_pn0pNQZvW-DE57Lpu3u17jF8kMg"/>
+</div>
+<div class="w-24 h-24 bg-surface-container overflow-hidden rounded border border-white/10">
+<img class="w-full h-full object-cover" data-alt="A dark, grainy photo of a small, hand-carved wooden bird. The bird is resting on a stack of hundred-dollar bills. Low-key lighting, noir style, high contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcepcVWZNIcfHJOz4IxhM6d5vzavsxfi7mlw5g2svDAAtpXj32386lUqiRhvJRDFl5IFDHeNp3Edd1qepaJS5wIOXGofTujk7TCTb1vyJk1eGnI3N1GJYOYHnjmfMufRtUXBMCShphuGFEh92tlhNykUWjZX6Zv4a5uxDnEItiJikvyMuKBACcZIh_6xHSeD4z1oEjL-IyHUFfbqDwUyc9iXwo6c9nQk-TH5cfSug1OSTVSa8NteATmw"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Secret Alibi (Confidential/Gritty) -->
+<div class="hidden space-y-6" id="content-alibi">
+<div class="bg-zinc-100 text-zinc-900 p-8 relative torn-edge shadow-xl transform rotate-1">
+<div class="absolute top-2 right-2 text-zinc-400">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">push_pin</span>
+</div>
+<h3 class="font-label-caps text-zinc-500 mb-4">HANDWRITTEN NOTE - FOUND ON SITE</h3>
+<div class="space-y-4 font-body-lg">
+<p class="border-b border-zinc-300 pb-2">I wasn't at the gallery at 11:00 PM.</p>
+<p class="border-b border-zinc-300 pb-2">I was at the old mill. Carving the frame for the 'Judgment of Solomon'.</p>
+<p class="border-b border-zinc-300 pb-2">Check the sawdust on my boots. It's white oak. The gallery floors are mahogany.</p>
+<p class="font-headline-sm text-primary-container pt-4">THE TRUTH IS IN THE GRAIN.</p>
+</div>
+<div class="mt-6 text-xs font-mono uppercase text-zinc-400">
+                                    Forensic Lab Status: <span class="text-error-container">UNVERIFIED</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-8 flex flex-col sm:flex-row gap-4">
+<button class="flex-1 bg-primary-container hover:bg-primary-container/80 text-on-primary font-label-caps py-4 rounded transition-all flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform">person_search</span>
+                        INTERROGATE SUBJECT
+                    </button>
+<button class="flex-1 bg-transparent border border-white/20 hover:bg-white/5 text-on-surface font-label-caps py-4 rounded transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">inventory_2</span>
+                        VIEW EVIDENCE LOG
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface-container/60 backdrop-blur-lg border-t border-white/10 flex justify-around items-center h-20 px-4 pb-safe shadow-2xl md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-caps text-label-caps mt-1">Lobby</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person_search</span>
+<span class="font-label-caps text-label-caps mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-caps text-label-caps mt-1">Evidence</span>
+</a>
+</nav>
+<!-- Desktop Floating Action -->
+<button class="hidden md:flex fixed right-8 bottom-8 w-16 h-16 bg-primary-container text-on-primary-container rounded-full shadow-2xl items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-3xl">fingerprint</span>
+</button>
+<script>
+        function switchTab(tabId) {
+            // Content visibility
+            document.getElementById('content-public').classList.add('hidden');
+            document.getElementById('content-motive').classList.add('hidden');
+            document.getElementById('content-alibi').classList.add('hidden');
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+
+            // Tab styling
+            const tabs = ['public', 'motive', 'alibi'];
+            tabs.forEach(t => {
+                const el = document.getElementById('tab-' + t);
+                el.classList.remove('text-primary', 'border-primary', 'bg-primary/5', 'border-b-2');
+                el.classList.add('text-on-surface-variant');
+            });
+
+            const activeTab = document.getElementById('tab-' + tabId);
+            activeTab.classList.remove('text-on-surface-variant');
+            activeTab.classList.add('text-primary', 'border-primary', 'bg-primary/5', 'border-b-2');
+
+            // Trigger a minor glitch effect sound/visual or micro-interaction
+            console.log('Accessing dossier section: ' + tabId);
+        }
+
+        // Initialize micro-animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const profile = document.querySelector('.lg\\:col-span-4 .bg-on-surface');
+            profile.addEventListener('mouseenter', () => {
+                profile.style.transform = 'translateY(-5px) scale(1.02)';
+                profile.style.transition = 'all 0.3s ease';
+            });
+            profile.addEventListener('mouseleave', () => {
+                profile.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body></html>

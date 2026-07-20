@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>A Crime at the Closed Gallery - Lobby</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&amp;family=Geist:wght@300;400;600&amp;family=JetBrains+Mono:wght@700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;family=Libre+Caslon+Text:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#410002",
+                    "primary-fixed": "#ffdad6",
+                    "secondary-container": "#d97707",
+                    "on-tertiary-fixed-variant": "#004b74",
+                    "surface-container-low": "#1c1b1d",
+                    "on-primary": "#690007",
+                    "error-container": "#93000a",
+                    "on-secondary-container": "#432100",
+                    "tertiary-container": "#00527f",
+                    "secondary-fixed": "#ffdcc3",
+                    "on-surface-variant": "#e1bfbb",
+                    "surface-variant": "#353437",
+                    "on-secondary-fixed-variant": "#6e3900",
+                    "outline": "#a88a86",
+                    "secondary-fixed-dim": "#ffb77d",
+                    "background": "#131315",
+                    "on-tertiary": "#003352",
+                    "tertiary-fixed": "#cde5ff",
+                    "primary-container": "#991b1b",
+                    "inverse-primary": "#b02d29",
+                    "on-tertiary-fixed": "#001d32",
+                    "secondary": "#ffb77d",
+                    "on-primary-fixed-variant": "#8e1214",
+                    "surface-container-lowest": "#0e0e10",
+                    "error": "#ffb4ab",
+                    "surface-container-high": "#2a2a2c",
+                    "surface-bright": "#39393b",
+                    "surface-dim": "#131315",
+                    "surface-tint": "#ffb4ac",
+                    "outline-variant": "#59413e",
+                    "surface": "#131315",
+                    "on-error-container": "#ffdad6",
+                    "primary-fixed-dim": "#ffb4ac",
+                    "on-primary-container": "#ffaaa1",
+                    "inverse-on-surface": "#313032",
+                    "tertiary-fixed-dim": "#94ccff",
+                    "inverse-surface": "#e5e1e4",
+                    "on-background": "#e5e1e4",
+                    "surface-container": "#201f22",
+                    "on-tertiary-container": "#8cc5f8",
+                    "surface-container-highest": "#353437",
+                    "on-secondary": "#4d2600",
+                    "primary": "#ffb4ac",
+                    "tertiary": "#94ccff",
+                    "on-error": "#690005",
+                    "on-surface": "#e5e1e4",
+                    "on-secondary-fixed": "#2f1500"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "container-padding": "24px",
+                    "unit": "4px",
+                    "evidence-gap": "32px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Libre Caslon Text"],
+                    "body-md": ["Geist"],
+                    "display-lg-mobile": ["Libre Caslon Text"],
+                    "headline-md": ["Libre Caslon Text"],
+                    "label-caps": ["JetBrains Mono"],
+                    "body-lg": ["Geist"],
+                    "display-lg": ["Libre Caslon Text"]
+            },
+            "fontSize": {
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .grain-overlay {
+            background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+            opacity: 0.03;
+            pointer-events: none;
+        }
+        .torn-edge {
+            mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="10" viewBox="0 0 100 10"><path d="M0 10 L5 8 L10 10 L15 7 L20 10 L25 8 L30 10 L35 7 L40 10 L45 8 L50 10 L55 7 L60 10 L65 8 L70 10 L75 7 L80 10 L85 8 L90 10 L95 7 L100 10 Z" fill="black"/></svg>');
+            mask-size: 100% 10px;
+            mask-repeat: no-repeat;
+            mask-position: bottom;
+        }
+        .stamp-rotate { transform: rotate(-12deg); }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .red-glow-focus:focus-within {
+            box-shadow: 0 0 15px rgba(153, 27, 27, 0.4);
+            border-color: #991b1b;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-x-hidden selection:bg-primary-container selection:text-white">
+<!-- Global Background Elements -->
+<div class="fixed inset-0 z-0">
+
+<div class="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background"></div>
+<div class="absolute inset-0 grain-overlay"></div>
+</div>
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-gutter h-16">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">timer</span>
+<h1 class="font-headline-sm text-headline-sm-mobile md:text-headline-sm text-primary uppercase tracking-widest">A Crime at the Closed Gallery</h1>
+</div>
+<button class="hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</header>
+<main class="relative z-10 pt-24 pb-32 px-gutter max-w-[1200px] mx-auto min-h-screen flex flex-col items-center justify-center">
+<!-- Hero Section / Title -->
+<div class="text-center mb-12 space-y-4">
+<div class="inline-block px-3 py-1 bg-primary-container text-on-primary-container font-label-caps text-label-caps mb-4 rounded-sm tracking-widest">
+                CRIME SCENE LOBBY
+            </div>
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface uppercase tracking-tight">
+                Case File <span class="text-primary italic">#0482</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mx-auto opacity-80">
+                A masterpiece stolen. A curator missing. The lights are out, and the suspects are gathered in the foyer.
+            </p>
+</div>
+<!-- Main Layout Grid -->
+<div class="w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+<!-- Code Input Column -->
+<section class="md:col-span-5 space-y-6">
+<div class="glass-panel p-8 rounded-lg relative overflow-hidden">
+<div class="absolute -top-4 -right-4 stamp-rotate opacity-20 select-none">
+<div class="border-4 border-amber-600 text-amber-600 px-4 py-1 font-label-caps text-headline-sm uppercase tracking-tighter">CLASSIFIED</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-6 text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">key</span>
+                        Enter Access Code
+                    </h3>
+<div class="flex gap-4 justify-between mb-8">
+<input class="w-16 h-20 text-center bg-white/5 border-b-2 border-white/20 font-display-lg text-display-lg-mobile focus:border-primary focus:outline-none transition-all rounded-t-sm" maxlength="1" type="text" value="8"/>
+<input class="w-16 h-20 text-center bg-white/5 border-b-2 border-white/20 font-display-lg text-display-lg-mobile focus:border-primary focus:outline-none transition-all rounded-t-sm" maxlength="1" placeholder="•" type="text"/>
+<input class="w-16 h-20 text-center bg-white/5 border-b-2 border-white/20 font-display-lg text-display-lg-mobile focus:border-primary focus:outline-none transition-all rounded-t-sm" maxlength="1" placeholder="•" type="text"/>
+<input class="w-16 h-20 text-center bg-white/5 border-b-2 border-white/20 font-display-lg text-display-lg-mobile focus:border-primary focus:outline-none transition-all rounded-t-sm" maxlength="1" placeholder="•" type="text"/>
+</div>
+<button class="w-full py-4 bg-primary-container text-white font-label-caps text-label-caps tracking-widest hover:brightness-125 transition-all active:scale-[0.98] rounded-sm flex items-center justify-center gap-2">
+                        VALIDATE CREDENTIALS
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<!-- Evidence Artifact (Atmospheric) -->
+<div class="hidden md:block transform -rotate-1 origin-top-left">
+<div class="bg-zinc-100 p-4 shadow-[8px_8px_0px_rgba(0,0,0,0.4)] text-zinc-900 font-label-caps text-xs">
+<div class="border-b border-zinc-300 pb-2 mb-2 flex justify-between">
+<span>NOTE TO SELF</span>
+<span>11:42 PM</span>
+</div>
+<p class="leading-relaxed">Don't trust the Curator. I saw him with the master key near the North Wing just before the power cut. Keep your eyes on the shadows.</p>
+<div class="mt-4 flex gap-2">
+<div class="w-2 h-2 bg-red-800 rounded-full"></div>
+<div class="w-2 h-2 bg-zinc-400 rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Waiting Room Column -->
+<section class="md:col-span-7 space-y-6">
+<div class="glass-panel rounded-lg overflow-hidden border-white/10 shadow-2xl">
+<div class="px-8 py-6 bg-white/5 border-b border-white/10 flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">The Suspects</h3>
+<span class="font-label-caps text-label-caps text-primary">3 / 8 PLAYERS</span>
+</div>
+<div class="p-4 space-y-3">
+<!-- Player Row: The Host -->
+<div class="flex items-center justify-between p-4 bg-white/5 rounded-sm border border-white/5 group hover:border-primary/30 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary">
+<img class="w-full h-full object-cover" data-alt="A gritty, high-contrast black and white portrait of an elderly man with sharp features and a monocle, wearing a Victorian tuxedo. The background is a dark, shadowy art gallery corridor with intense moody lighting and film grain texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8TEiTfl3zIxUtUa0K8g9xR8KCvUxi723OSHyFT0JZEqx99W4AG-EzZNTBdBJkzZZz8pLz4M6ZLp_GNPtKYsUiHbAcu4bfmi7BO_YBevrSvYzawL_K2K-bLLxAajlQTp4urV63gjYl0L744xDw-v1wFMrKTGMJJuJsqwETVBvAeEwYCYkbAPSy478CxPH_xX58_sr3sprfS16SUK-nyGiIe4njT0UO1FsOjHILiPg5JIFL9DC89eQ0dw"/>
+</div>
+<div>
+<p class="font-headline-sm text-[18px] text-on-surface">The Curator</p>
+<p class="font-label-caps text-[10px] text-primary">ROOM HOST</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-label-caps text-green-500 uppercase">Ready</span>
+<span class="material-symbols-outlined text-green-500" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<!-- Player Row: Participant 1 -->
+<div class="flex items-center justify-between p-4 bg-white/5 rounded-sm border border-white/5 group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-white/20">
+<img class="w-full h-full object-cover grayscale brightness-75" data-alt="A mysterious, cinematic portrait of a woman in a crimson velvet evening dress, her face partially obscured by the brim of a dark hat. The lighting is low-key, dramatic, and forensic in style, highlighting textures and shadows within a dark museum setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuArk0MHAvsTtmDsGLjySmxdJiUI11aPp1t4pprdiEhxi2bBWdG47LaFT12wYvt1jS9CMLcDErs-sjcOE5rK-F0bWiqJL-7fnikWBCZksZyS_1j24_k0enEURDcXSBgKkDl_zros0-0VyXeHQZ-6TXah_b_7EF84zM6u_DplfMSJoFbOqJ-Q01FxyfkMKkx3QUzYILvDUZZFsBwX12caLZ41m60x8fnNoRfCECGwUpRg-gnSuM6HyYz17w"/>
+</div>
+<div>
+<p class="font-headline-sm text-[18px] text-on-surface">The Architect</p>
+<p class="font-label-caps text-[10px] text-on-surface-variant">PLAYER</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Pending</span>
+<button class="w-6 h-6 border-2 border-white/20 rounded-full flex items-center justify-center hover:border-primary transition-all active:scale-90">
+<div class="w-2 h-2 bg-primary/0 rounded-full group-hover:bg-primary transition-all"></div>
+</button>
+</div>
+</div>
+<!-- Player Row: Participant 2 -->
+<div class="flex items-center justify-between p-4 bg-white/5 rounded-sm border border-white/5 group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-white/20">
+<img class="w-full h-full object-cover grayscale brightness-50" data-alt="A shadowy, atmospheric close-up of a young man with nervous eyes, wearing a trench coat. He is holding a flashlight, and the beam creates a sharp flare against the camera lens. Dark, forensic aesthetic with heavy grain and deep red color accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA26XfFzx7w6DM1uletD57nANJShHGWec0N-l5DXVp6m7NO-KEDPYcWm9J5ZFL0pAn-n_k7hNrKbdMXHafAYbtLV3BbtO4ZW4o-nEosa2dXL5S3S-TtVlBKnUv76Lb1S5QoKWmRlkpNRnB0OyqJLN_J4aErBLua-jvRMf8UloVZANKjXzhuQYtK9KWvYesNdSE996Z-JBhOcvb4M--pxWo1kyiR2y2-yiyyMTOxXRoL37R6rkGahcXVzw"/>
+</div>
+<div>
+<p class="font-headline-sm text-[18px] text-on-surface">The Night Watchman</p>
+<p class="font-label-caps text-[10px] text-on-surface-variant">YOU</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+<span class="ml-3 font-label-caps text-label-caps text-on-surface-variant peer-checked:text-primary">TOGGLE READY</span>
+</label>
+</div>
+</div>
+<!-- Polaroid Evidence Pile (Visual) -->
+<div class="p-8 border-t border-white/5 bg-black/20 flex flex-wrap gap-4 overflow-hidden">
+<div class="w-24 h-28 bg-zinc-200 p-1 shadow-lg transform -rotate-6 flex flex-col">
+<div class="flex-grow bg-zinc-800 overflow-hidden">
+<img class="w-full h-full object-cover opacity-60" data-alt="A blurred, grainy surveillance camera still showing a dark hallway with a single bright painting at the end. The image is desaturated with a yellowed paper texture overlay and heavy film noise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0UQ8pzs_6OPuTPZY54SmpRjf-to3qekXav7lGiXrozNvWR_Gv2uFOH7-obP_93zrPNnTfajYYaYBfD6uDsUkbZjXuQvF8puBjioMEHi8kMSExhehFEiFoRWChsAkP1fKoyHtykUNSI9TkDUoRmUurkKdnbCv3krzQXtcW8gADU822aw9GNEx6k8uW-8o-y1A-8TQAJbg5uFjnSUGh4zsGmNQMeo3XweFXAuX38qafvXvuodgirzlryg"/>
+</div>
+<div class="h-6 flex items-center justify-center">
+<span class="text-[8px] font-label-caps text-zinc-600">EV-01</span>
+</div>
+</div>
+<div class="w-24 h-28 bg-zinc-200 p-1 shadow-lg transform rotate-3 flex flex-col">
+<div class="flex-grow bg-zinc-800 overflow-hidden">
+<img class="w-full h-full object-cover opacity-60" data-alt="A macro shot of a shattered glass display case in a dark room. Shards of glass catch a red emergency light reflection. The style is gritty, tactile, and forensic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpvswNQZCN0nLlyEd2XQmtGov4KUC_XgDKFunD7_lhNRf3fEwGm6DSlpYdKpPxby-qz3dFEM2uLSD3P0festWvEsFTMnvQrFj2OuCbN0QwSnsNpbitA_ElX6iNU2ZKUUIhleiEo0K5pybPmjiNcbAD2wVetWr-fSpRYUTtSuI-1tKyFT4eobAKZR9ub5J7SjRuBzUUp4yUoJvUwMaELpwP39arIBgOF1h_hAWT4YVDPCgzpMUh7pmWVQ"/>
+</div>
+<div class="h-6 flex items-center justify-center">
+<span class="text-[8px] font-label-caps text-zinc-600">CR-88</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Call to Action -->
+<div class="mt-12 flex flex-col items-center gap-4">
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-[0.2em] animate-pulse">Waiting for host to initiate the investigation...</p>
+<div class="flex gap-4">
+<button class="px-8 py-3 glass-panel text-white font-label-caps text-label-caps tracking-widest hover:bg-white/10 transition-all rounded-sm">
+                    VIEW RULES
+                </button>
+<button class="px-8 py-3 bg-white text-background font-label-caps text-label-caps tracking-widest hover:bg-primary-fixed transition-all active:scale-95 rounded-sm">
+                    START CASE
+                </button>
+</div>
+</div>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface-container/60 backdrop-blur-lg border-t border-white/10 flex justify-around items-center h-20 px-4 pb-safe shadow-2xl">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-label-caps text-[10px]">Lobby</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-white/5 transition-colors p-2 rounded-full" href="#">
+<span class="material-symbols-outlined">person_search</span>
+<span class="font-label-caps text-[10px]">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-white/5 transition-colors p-2 rounded-full" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-caps text-[10px]">Evidence</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for the digit inputs
+        const inputs = document.querySelectorAll('input[type="text"]');
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        // Atmospheric flicker effect on primary color
+        const glowElements = document.querySelectorAll('.text-primary');
+        setInterval(() => {
+            glowElements.forEach(el => {
+                if (Math.random() > 0.95) {
+                    el.style.opacity = '0.7';
+                    setTimeout(() => el.style.opacity = '1', 50);
+                }
+            });
+        }, 100);
+    </script>
+</body></html>
